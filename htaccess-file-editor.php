@@ -3,7 +3,7 @@
 Plugin Name: Htaccess File Editor
 Plugin URI: https://themeegg.com/
 Description: Simple editor htaccess file without using FTP client.
-Version: 1.0.0
+Version: 1.0.1
 Text Domain: wphe
 Domain Path: /lang/
 Author: ThemeEgg
@@ -12,18 +12,13 @@ Requires at least: 3.0.0
 Tested up to: 4.9.4
 License: GPLv2 or later
 */
-
-
 if ( ! defined( 'ABSPATH' ) ) {
 	die( 'You do not have sufficient permissions to access this file.' );
 }
-
-
-/***** Základní nastavení cest a URL adres pluginu ********************/
 if ( ! is_admin() ) {
 	return;
 } else {
-	$WPHE_version = '1.0.0';
+	$WPHE_version = '1.0.1';
 
 	if ( ! defined( 'WP_CONTENT_URL' ) ) {
 		if ( ! defined( 'WP_SITEURL' ) ) {
