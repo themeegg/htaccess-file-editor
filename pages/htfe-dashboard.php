@@ -6,7 +6,7 @@ if(current_user_can('activate_plugins')){
 	$WPHE_orig_path = ABSPATH.'.htaccess';
 	?>
 	<div class="wrap">
-	<h2 class="wphe-title" style="padding-left:50px;">Htaccess File Editor</h2>
+	<h2 class="htfe-title" style="padding-left:50px;">Htaccess File Editor</h2>
 	<?php
 	//============================ Uložení Htaccess souboru =======================================
 	if(!empty($_POST['submit']) AND !empty($_POST['save_htaccess']) AND check_admin_referer('wphe_save', 'wphe_save')){
@@ -58,27 +58,27 @@ if(current_user_can('activate_plugins')){
 	}else{
 		?>
 		<p><?php _e('Using this editor you can easily modify your htaccess file without having to use an FTP client.', 'wphe');?></p>
-		<p class="wphe-red"><?php _e('<strong>WARNING:</strong> Any error in this file may cause malfunction of your site!', 'wphe');?><br />
+		<p class="htfe-red"><?php _e('<strong>WARNING:</strong> Any error in this file may cause malfunction of your site!', 'wphe');?><br />
 		<?php _e('Edit htaccess file should therefore be performed only by experienced users!', 'wphe');?><br />
 		</p>
-		<div class="postbox wphe-box">
-		<h3 class="wphe-title"><?php _e('Information for editing htaccess file', 'wphe');?></h3>
+		<div class="postbox htfe-box">
+		<h3 class="htfe-title"><?php _e('Information for editing htaccess file', 'wphe');?></h3>
 		<p><?php _e('For more information on possible adjustments to this file, please visit', 'wphe');?> <a href="http://httpd.apache.org/docs/current/howto/htaccess.html" target="_blank">Apache Tutorial: .htaccess files</a> <?php _e('or','wphe'); ?> <a href="http://net.tutsplus.com/tutorials/other/the-ultimate-guide-to-htaccess-files/" target="_blank">The Ultimate Guide to .htaccess Files</a>. </p>
 				<p><a href="http://www.google.com/#sclient=psy&q=htaccess+how+to" target="_blank"><?php _e('use the Google search.','wphe');?></a></p>
 		</div>
 		<?php
 		if(!file_exists($WPHE_orig_path))
 		{
-			echo'<div class="postbox wphe-box">';
-			echo'<pre class="wphe-red">'.__('Htaccess file does not exists!', 'wphe').'</pre>';
+			echo'<div class="postbox htfe-box">';
+			echo'<pre class="htfe-red">'.__('Htaccess file does not exists!', 'wphe').'</pre>';
 			echo'</div>';
 			$success = false;
 		}else{
 			$success = true;
 			if(!is_readable($WPHE_orig_path))
 			{
-				echo'<div class="postbox wphe-box">';
-				echo'<pre class="wphe-red">'.__('Htaccess file cannot read!', 'wphe').'</pre>';
+				echo'<div class="postbox htfe-box">';
+				echo'<pre class="htfe-red">'.__('Htaccess file cannot read!', 'wphe').'</pre>';
 				echo'</div>';
 				$success = false;
 			}
@@ -86,8 +86,8 @@ if(current_user_can('activate_plugins')){
 				@chmod($WPHE_orig_path, 0644);
 				$WPHE_htaccess_content = @file_get_contents($WPHE_orig_path, false, NULL);
 				if($WPHE_htaccess_content === false){
-					echo'<div class="postbox wphe-box">';
-					echo'<pre class="wphe-red">'.__('Htaccess file cannot read!', 'wphe').'</pre>';
+					echo'<div class="postbox htfe-box">';
+					echo'<pre class="htfe-red">'.__('Htaccess file cannot read!', 'wphe').'</pre>';
 					echo'</div>';
 					$success = false;
 				}else{
@@ -98,12 +98,12 @@ if(current_user_can('activate_plugins')){
 
 		if($success == true){
 			?>
-			<div class="postbox wphe-box">
+			<div class="postbox htfe-box">
 			<form method="post" action="admin.php?page=<?php echo $WPHE_dirname; ?>">
 			<input type="hidden" name="save_htaccess" value="save" />
 			<?php wp_nonce_field('wphe_save','wphe_save'); ?>
-			<h3 class="wphe-title"><?php _e('Content of the Htaccess file', 'wphe');?></h3>
-			<textarea name="ht_content" class="wphe-textarea" wrap="off"><?php echo $WPHE_htaccess_content;?></textarea>
+			<h3 class="htfe-title"><?php _e('Content of the Htaccess file', 'wphe');?></h3>
+			<textarea name="ht_content" class="htfe-textarea" wrap="off"><?php echo $WPHE_htaccess_content;?></textarea>
 			<p class="submit"><input type="submit" class="button button-primary" name="submit" value="<?php _e('Save file &raquo;', 'wphe');?>" /></p>
 			</form>
 			</div>
@@ -111,7 +111,7 @@ if(current_user_can('activate_plugins')){
 			unset($WPHE_htaccess_content);
 		}else{
 			?>
-			<div class="postbox wphe-box" style="background: #E0FCE1;">
+			<div class="postbox htfe-box" style="background: #E0FCE1;">
 			<form method="post" action="admin.php?page=<?php echo $WPHE_dirname; ?>">
 			<input type="hidden" name="create_htaccess" value="create" />
 			<?php wp_nonce_field('wphe_create','wphe_create'); ?>

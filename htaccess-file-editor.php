@@ -47,21 +47,23 @@ if ( ! is_admin() ) {
 	}
 	unset( $WPHE_Locale );
 
-
 	/***** Načtení souborů pluginu ****************************************/
 	if ( file_exists( $WPHE_lib . 'lib.wp-files.php' ) ) {
 		require $WPHE_lib . 'lib.wp-files.php';
+
 	} else {
 		wp_die( __( 'Fatal error: Plugin <strong>Htaccess File Editor</strong> is corrupted', 'wphe' ) );
 	}
 
 	if ( file_exists( $WPHE_lib . 'lib.functions.php' ) ) {
+
 		require $WPHE_lib . 'lib.functions.php';
 	} else {
 		wp_die( __( 'Fatal error: Plugin <strong>Htaccess File Editor</strong> is corrupted', 'wphe' ) );
 	}
 
 	if ( file_exists( $WPHE_lib . 'lib.ad.php' ) ) {
+
 		require $WPHE_lib . 'lib.ad.php';
 	} else {
 		wp_die( __( 'Fatal error: Plugin <strong>Htaccess File Editor</strong> is corrupted', 'wphe' ) );
@@ -69,6 +71,7 @@ if ( ! is_admin() ) {
 
 
 	if ( file_exists( $WPHE_lib . 'lib.pages.php' ) ) {
+
 		require $WPHE_lib . 'lib.pages.php';
 	} else {
 		wp_die( __( 'Fatal error: Plugin <strong>Htaccess File Editor</strong> is corrupted', 'wphe' ) );
@@ -87,4 +90,5 @@ if ( ! is_admin() ) {
 
 		return;
 	}
+
 }

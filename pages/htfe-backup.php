@@ -6,7 +6,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 if ( current_user_can( 'activate_plugins' ) ) {
 	?>
     <div class="wrap">
-        <h2 class="wphe-title" style="padding-left:50px">Htaccess File Editor - <?php _e( 'Backup', 'wphe' ); ?></h2>
+        <h2 class="htfe-title" style="padding-left:50px">Htaccess File Editor - <?php _e( 'Backup', 'wphe' ); ?></h2>
 		<?php
 		//============================ Restore Backup ===================================
 		if ( ! empty( $_POST['submit'] ) && ! empty( $_POST['restore_backup'] ) && check_admin_referer( 'wphe_restoreb', 'wphe_restoreb' ) ) {
@@ -14,7 +14,7 @@ if ( current_user_can( 'activate_plugins' ) ) {
 			$wphe_restore_result = WPHE_RestoreBackup();
 			if ( $wphe_restore_result === false ) {
 				echo '<div id="message" class="error fade"><p><strong>' . __( 'Unable to restore backup! Probably the wrong setting write permissions to the files.', 'wphe' ) . '</strong></p></div>';
-				echo '<div class="postbox wphe-box">';
+				echo '<div class="postbox htfe-box">';
 				echo '<p>' . __( 'The backup file is located in the <code>wp-content</code> folder.', 'wphe' ) . '</p>';
 				echo '</div>';
 			} elseif ( $wphe_restore_result === true ) {
@@ -22,16 +22,16 @@ if ( current_user_can( 'activate_plugins' ) ) {
 				echo '<div id="message" class="updated fade"><p><strong>' . __( 'Old backup file was deleted successfully', 'wphe' ) . '</strong></p></div>';
 			} else {
 				echo '<div id="message" class="error fade"><p><strong>' . __( 'Unable to restore backup!', 'wphe' ) . '</strong></p></div>';
-				echo '<div class="postbox wphe-box" style="background: #FFEECE;">';
-				echo '<p class="wphe-red">' . __( 'This is contents of the original file, put it into a file manually', 'wphe' ) . ':</p>';
-				echo '<textarea class="wphe-textarea">' . $wphe_restore_result . '</textarea>';
+				echo '<div class="postbox htfe-box" style="background: #FFEECE;">';
+				echo '<p class="htfe-red">' . __( 'This is contents of the original file, put it into a file manually', 'wphe' ) . ':</p>';
+				echo '<textarea class="htfe-textarea">' . $wphe_restore_result . '</textarea>';
 				echo '</div>';
 			}
 			//============================== Create Backup ===================================
 		} elseif ( ! empty( $_POST['submit'] ) && ! empty( $_POST['create_backup'] ) && check_admin_referer( 'wphe_createb', 'wphe_createb' ) ) {
 			if ( WPHE_CreateBackup() ) {
 				echo '<div id="message" class="updated fade"><p><strong>' . __( 'Backup file was created successfully', 'wphe' ) . '</strong></p></div>';
-				echo '<div class="postbox wphe-box">';
+				echo '<div class="postbox htfe-box">';
 				echo '<p>' . __( 'The backup file is located in the <code>wp-content</code> folder.', 'wphe' ) . '</p>';
 				echo '</div>';
 			} else {
@@ -49,7 +49,7 @@ if ( current_user_can( 'activate_plugins' ) ) {
 			//============================== Home ==============================================
 		} else {
 			if ( file_exists( ABSPATH . 'wp-content/htaccess.backup' ) ) {
-				echo '<div class="postbox wphe-box" style="background: #FFEECE;">';
+				echo '<div class="postbox htfe-box" style="background: #FFEECE;">';
 				?>
                 <form method="post" action="admin.php?page=<?php echo $WPHE_dirname; ?>_backup">
 					<?php wp_nonce_field( 'wphe_restoreb', 'wphe_restoreb' ); ?>
@@ -60,7 +60,7 @@ if ( current_user_can( 'activate_plugins' ) ) {
                 </form>
 				<?php
 				echo '</div>';
-				echo '<div class="postbox wphe-box" style="background: #FFEECE;">';
+				echo '<div class="postbox htfe-box" style="background: #FFEECE;">';
 				?>
                 <form method="post" action="admin.php?page=<?php echo $WPHE_dirname; ?>_backup">
 					<?php wp_nonce_field( 'wphe_deleteb', 'wphe_deleteb' ); ?>
@@ -72,11 +72,11 @@ if ( current_user_can( 'activate_plugins' ) ) {
 				<?php
 				echo '</div>';
 			} else {
-				echo '<div class="postbox wphe-box">';
-				echo '<pre class="wphe-red">' . __( 'Backup file not found...', 'wphe' ) . '</pre>';
+				echo '<div class="postbox htfe-box">';
+				echo '<pre class="htfe-red">' . __( 'Backup file not found...', 'wphe' ) . '</pre>';
 				echo '</div>';
 
-				echo '<div class="postbox wphe-box" style="background: #E0FCE1;">';
+				echo '<div class="postbox htfe-box" style="background: #E0FCE1;">';
 				?>
                 <form method="post" action="admin.php?page=<?php echo $WPHE_dirname; ?>_backup">
 					<?php wp_nonce_field( 'wphe_createb', 'wphe_createb' ); ?>
